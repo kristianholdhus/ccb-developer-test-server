@@ -3,11 +3,17 @@ package holdhus.developer_test.entity;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import holdhus.developer_test.converter.RatingConverter;
 
 @Entity
 @Table(name = "film_list")
@@ -28,16 +34,19 @@ public class Film {
 
     private int length; // smallint(5) unsigned
 
-    // TODO make this an enum
-    private String rating; // enum('G','PG','PG-13','R','NC-17')
+    @Convert(converter = RatingConverter.class)
+    @JsonSerialize(using = RatingConverter.JsonSerializer.class)
+    @JsonDeserialize(using = RatingConverter.JsonDeserializer.class)
+    private Rating rating; // enum('G','PG','PG-13','R','NC-17')
 
     private String actors; // Text
 
     // Provided for JPA bean-initialization
+    @SuppressWarnings("unused")
     private Film() {}
 
     public Film(Integer id, String title, String description, String category, BigDecimal price, int length,
-            String rating, String actors) {
+            Rating rating, String actors) {
         super();
         this.id = id;
         this.title = title;
@@ -73,7 +82,7 @@ public class Film {
         return length;
     }
 
-    public String getRating() {
+    public Rating getRating() {
         return rating;
     }
 
