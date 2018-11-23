@@ -1,0 +1,3 @@
+- Database password should not be stored in source.
+- Add pagination for bulk film results. Returning entire contents of DB table does not scale.
+- Film entity needs better attribute validation (nullability, size contraints). JPA requires coaxing into using a non-default constructor for initialization.
