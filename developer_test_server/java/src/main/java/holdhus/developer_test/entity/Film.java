@@ -26,8 +26,6 @@ public class Film {
 
     private String title; // Max 255 chars
 
-    private String description; // Text
-
     private String category; // Max 25 chars - Nonnull
 
     private BigDecimal price; // Decimal(4,2)
@@ -39,8 +37,6 @@ public class Film {
     @JsonDeserialize(using = RatingConverter.JsonDeserializer.class)
     private Rating rating; // enum('G','PG','PG-13','R','NC-17')
 
-    private String actors; // Text
-
     // Provided for JPA bean-initialization
     @SuppressWarnings("unused")
     private Film() {}
@@ -50,12 +46,10 @@ public class Film {
         super();
         this.id = id;
         this.title = title;
-        this.description = description;
         this.category = category;
         this.price = price;
         this.length = length;
         this.rating = rating;
-        this.actors = actors;
     }
 
     public Integer getId() {
@@ -64,10 +58,6 @@ public class Film {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getCategory() {
@@ -86,14 +76,10 @@ public class Film {
         return rating;
     }
 
-    public String getActors() {
-        return actors;
-    }
-
     @Override
     public String toString() {
-        return "Film [id=" + id + ", title=" + title + ", description=" + description + ", category=" + category
-                + ", price=" + price + ", length=" + length + ", rating=" + rating + ", actors=" + actors + "]";
+        return "Film [id=" + id + ", title=" + title + ", category=" + category
+                + ", price=" + price + ", length=" + length + ", rating=" + rating + "]";
     }
 
 }
