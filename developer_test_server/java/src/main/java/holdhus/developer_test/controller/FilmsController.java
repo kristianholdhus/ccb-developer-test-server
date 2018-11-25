@@ -2,12 +2,18 @@ package holdhus.developer_test.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import holdhus.developer_test.entity.Film;
+import holdhus.developer_test.entity.Rating;
 import holdhus.developer_test.repository.FilmRepository;
 
 @RestController
@@ -19,9 +25,51 @@ public class FilmsController {
     private FilmRepository filmRepository;
 
     @GetMapping
-    public @ResponseBody Iterable<Film> getFilms() {
-        // TODO return only a page
-        // This returns a JSON or XML with the users
+    public @ResponseBody Iterable<Film> getFilms(
+            @RequestParam(required=false) String category,
+            @RequestParam(required=false) Rating rating,
+            @RequestParam(required=false) String titleContains
+            ) {
+        if (rating != null || category != null || titleContains != null) {
+            ParameterizedSearch search = new ParameterizedSearch(category, rating, titleContains);
+            return filmRepository.findAll(Example.of(search.getExample(), search.getExampleMatcher()));
+        }
         return filmRepository.findAll();
     }
+
+    /**
+     * Utility class for building Spring query example objects.
+     */
+    private static final class ParameterizedSearch {
+
+        private final String category;
+        private final Rating rating;
+        private final String titleContains;
+
+        public ParameterizedSearch(@Nullable String category, @Nullable Rating rating, @Nullable String titleContains) {
+            this.category = category;
+            this.rating = rating;
+            this.titleContains = titleContains;
+        }
+
+        public Film getExample() {
+            return new Film(null, titleContains, null, category, null, null, rating, null);
+        }
+
+        public ExampleMatcher getExampleMatcher() {
+            ExampleMatcher matcher = ExampleMatcher.matching();
+            if (titleContains != null) {
+                matcher = matcher.withMatcher("title", GenericPropertyMatchers.contains().ignoreCase());
+            }
+            if (category != null) {
+                matcher = matcher.withMatcher("category", GenericPropertyMatchers.exact().ignoreCase());
+            }
+            if (rating != null) {
+                matcher = matcher.withMatcher("rating", GenericPropertyMatchers.exact());
+            }
+            return matcher;
+        }
+
+    }
+
 }

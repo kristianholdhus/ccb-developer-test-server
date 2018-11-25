@@ -1,3 +1,5 @@
 - Database password should not be stored in source.
 - Add pagination for bulk film results. Returning entire contents of DB table does not scale.
 - Film entity needs better attribute validation (nullability, size contraints). JPA requires coaxing into using a non-default constructor for initialization.
+- Support better film title searches. Currently only supports substring matching (using LIKE query). Better matching can be done using a MySQL dialect for JPA and MATCH+AGAINST queries.
+- Implement better customer facing error handling for failures related to bad REST parameters or inputs.
