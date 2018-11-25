@@ -32,7 +32,7 @@ public class Film {
 
     private BigDecimal price; // Decimal(4,2)
 
-    private int length; // smallint(5) unsigned
+    private Integer length; // smallint(5) unsigned
 
     @Convert(converter = RatingConverter.class)
     @JsonSerialize(using = RatingConverter.JsonSerializer.class)
@@ -45,7 +45,7 @@ public class Film {
     @SuppressWarnings("unused")
     private Film() {}
 
-    public Film(Integer id, String title, String description, String category, BigDecimal price, int length,
+    public Film(Integer id, String title, String description, String category, BigDecimal price, Integer length,
             Rating rating, String actors) {
         super();
         this.id = id;
@@ -78,7 +78,7 @@ public class Film {
         return price;
     }
 
-    public int getLength() {
+    public Integer getLength() {
         return length;
     }
 
