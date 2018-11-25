@@ -3,3 +3,4 @@
 - Film entity needs better attribute validation (nullability, size contraints). JPA requires coaxing into using a non-default constructor for initialization.
 - Support better film title searches. Currently only supports substring matching (using LIKE query). Better matching can be done using a MySQL dialect for JPA and MATCH+AGAINST queries.
 - Implement better customer facing error handling for failures related to bad REST parameters or inputs.
+- Create hashcode(), equals() methods for Entity objects if needed (i.e. if they are ever to be compared for equality, or to be stored in Set/HashMap collections.

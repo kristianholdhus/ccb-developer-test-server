@@ -2,6 +2,7 @@ package holdhus.developer_test.entity;
 
 import java.math.BigDecimal;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -76,6 +77,7 @@ public class Film {
         return rating;
     }
 
+    @Generated("Eclipse")
     @Override
     public String toString() {
         return "Film [id=" + id + ", title=" + title + ", category=" + category
