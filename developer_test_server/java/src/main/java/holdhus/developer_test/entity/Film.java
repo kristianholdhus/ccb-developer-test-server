@@ -39,8 +39,7 @@ public class Film {
     private Rating rating; // enum('G','PG','PG-13','R','NC-17')
 
     // Provided for JPA bean-initialization
-    @SuppressWarnings("unused")
-    private Film() {}
+    public Film() {}
 
     public Film(Integer filmId, String title, String description, String category, BigDecimal price, Integer length,
             Rating rating, String actors) {
@@ -57,24 +56,48 @@ public class Film {
         return filmId;
     }
 
+    public void setFilmId(Integer filmId) {
+        this.filmId = filmId;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getCategory() {
         return category;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public Integer getLength() {
         return length;
     }
 
+    public void setLength(Integer length) {
+        this.length = length;
+    }
+
     public Rating getRating() {
         return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 
     @Generated("Eclipse")

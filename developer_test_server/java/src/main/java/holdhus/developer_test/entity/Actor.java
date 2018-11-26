@@ -22,8 +22,7 @@ public class Actor {
     private String lastName;
 
     // Provided for JPA bean-initialization
-    @SuppressWarnings("unused")
-    private Actor() {}
+    public Actor() {}
 
     public Actor(int actorId, String firstName, String lastName) {
         super();
@@ -36,12 +35,24 @@ public class Actor {
         return actorId;
     }
 
+    public void setActorId(int actorId) {
+        this.actorId = actorId;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Generated("Eclipse")

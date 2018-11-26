@@ -20,8 +20,7 @@ public class FilmDescription {
     private String description; // DB type: Text
 
     // Provided for JPA bean-initialization
-    @SuppressWarnings("unused")
-    private FilmDescription() {}
+    public FilmDescription() {}
 
     public FilmDescription(Integer filmId, String description) {
         this.filmId = filmId;
@@ -32,8 +31,16 @@ public class FilmDescription {
         return filmId;
     }
 
+    public void setFilmId(Integer filmId) {
+        this.filmId = filmId;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Generated("Eclipse")

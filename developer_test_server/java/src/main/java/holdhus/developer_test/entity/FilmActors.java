@@ -29,8 +29,7 @@ public class FilmActors {
     private Set<Actor> actors;
 
     // Provided for JPA bean-initialization
-    @SuppressWarnings("unused")
-    private FilmActors() {}
+    public FilmActors() {}
 
     public FilmActors(Integer filmId, Set<Actor> actors) {
         super();
@@ -42,8 +41,16 @@ public class FilmActors {
         return filmId;
     }
 
+    public void setFilmId(Integer filmId) {
+        this.filmId = filmId;
+    }
+
     public Set<Actor> getActors() {
         return actors;
+    }
+
+    public void setActors(Set<Actor> actors) {
+        this.actors = actors;
     }
 
     @Generated("Eclipse")
