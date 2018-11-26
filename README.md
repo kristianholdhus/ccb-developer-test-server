@@ -72,3 +72,8 @@ The following improvements can still be made to the service:
 - **Support better film title searches**: The title currently only supports substring matching (using SQL LIKE query). Better matching can be done using a MySQL dialect for JPA and the MATCH + AGAINST queries that MySQL supports. Alternatively database entities could be indexed in a search/indexing service like Lucene if search load needs to be removed from MySQL.
 - **Implement better customer facing error messages**: The service currently outputs raws errors on failure. Better error handling is needed for expected failures related to bad REST parameters and inputs from clients.
 - **Unit tests**: The service doesn't have tests. Setting up tests for the service will require initializing an in-memory DB and initializing with test data.
+- **Support for SSL connections**: The service does not support SSL connection termination.
+- **Authentication**: The service has no implementation of authentication / authorization.
+- **Request throttling**: The service has no implementation of request throttling to guard against Denial-of-service attacks.
+- **Separation of DB and Service**: Under production, the DB and service should be able to scale independantly. Presently the docker-compose file starts up both on the same host.
+- **Query plan optimization**: The API for retrieving Films (in bulk) queries a MySQL VIEW. This is a little suboptimal as it joins against tables that contain data which is not included in the results.
