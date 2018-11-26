@@ -21,9 +21,9 @@ import holdhus.developer_test.converter.RatingConverter;
 public class Film {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "FID")
-    private Integer id;
+    private Integer filmId;
 
     private String title; // Max 255 chars
 
@@ -42,10 +42,10 @@ public class Film {
     @SuppressWarnings("unused")
     private Film() {}
 
-    public Film(Integer id, String title, String description, String category, BigDecimal price, Integer length,
+    public Film(Integer filmId, String title, String description, String category, BigDecimal price, Integer length,
             Rating rating, String actors) {
         super();
-        this.id = id;
+        this.filmId = filmId;
         this.title = title;
         this.category = category;
         this.price = price;
@@ -53,8 +53,8 @@ public class Film {
         this.rating = rating;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getFilmId() {
+        return filmId;
     }
 
     public String getTitle() {
@@ -80,7 +80,7 @@ public class Film {
     @Generated("Eclipse")
     @Override
     public String toString() {
-        return "Film [id=" + id + ", title=" + title + ", category=" + category
+        return "Film [filmId=" + filmId + ", title=" + title + ", category=" + category
                 + ", price=" + price + ", length=" + length + ", rating=" + rating + "]";
     }
 

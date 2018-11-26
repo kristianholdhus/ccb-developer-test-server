@@ -15,7 +15,7 @@ public class FilmDescription {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "film_id")
-    private Integer id;
+    private Integer filmId;
 
     private String description; // DB type: Text
 
@@ -23,13 +23,13 @@ public class FilmDescription {
     @SuppressWarnings("unused")
     private FilmDescription() {}
 
-    public FilmDescription(Integer id, String description) {
-        this.id = id;
+    public FilmDescription(Integer filmId, String description) {
+        this.filmId = filmId;
         this.description = description;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getFilmId() {
+        return filmId;
     }
 
     public String getDescription() {
@@ -39,7 +39,7 @@ public class FilmDescription {
     @Generated("Eclipse")
     @Override
     public String toString() {
-        return "FilmDescription [id=" + id + ", description=" + description + "]";
+        return "FilmDescription [filmId=" + filmId + ", description=" + description + "]";
     }
 
 }
