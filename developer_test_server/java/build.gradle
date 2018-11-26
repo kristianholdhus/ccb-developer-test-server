@@ -35,5 +35,9 @@ dependencies {
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
 
+    // Not present in Java 11, so must be imported
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'         // API
+    compile group: 'org.apache.camel', name: 'camel-jaxb', version: '2.22.2'    // Implementation
+
     testCompile("junit:junit")
 }
