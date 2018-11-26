@@ -15,6 +15,10 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import holdhus.developer_test.entity.Rating;
 
+/**
+ * Class used by JPA and Jackson for converting between Rating enums
+ * and Strings.
+ */
 @Converter
 public class RatingConverter implements AttributeConverter<Rating, String> {
 

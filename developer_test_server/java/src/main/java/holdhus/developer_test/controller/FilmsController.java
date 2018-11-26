@@ -39,6 +39,12 @@ public class FilmsController {
 
     /**
      * Utility class for building Spring query example objects.
+     *
+     * Spring defines an Example object as an instance of Film (in this case)
+     * where some attributes have been filled in with search values.
+     *
+     * The ExampleMatcher object defines how the search values in the Example
+     * object should be compared to DB values.
      */
     private static final class ParameterizedSearch {
 
