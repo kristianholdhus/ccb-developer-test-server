@@ -39,5 +39,7 @@ dependencies {
     compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'         // API
     compile group: 'org.apache.camel', name: 'camel-jaxb', version: '2.22.2'    // Implementation
 
+    compile group: 'javassist', name: 'javassist', version: '3.12.1.GA'
+
     testCompile("junit:junit")
 }
